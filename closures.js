@@ -1,4 +1,4 @@
-/* 
+/*  
   Once you complete a problem, refresh ./closures.html in your browser and check to see if the problem's test(s) are passing.
   Passed tests will be indicated by a green circle.
   Failed tests will be indicated by a red X.
@@ -10,34 +10,30 @@
 
 // Do not edit the code below.
 function outer() {
-  var name = 'Tyler';
+  var name = "Tyler";
   return function() {
-    return 'The original name was ' + name;
+    return "The original name was " + name;
   };
 }
 // Do not edit the code above.
-  
+
 /* 
   Above you're given a function that returns another function which has a closure over the name variable.
   Invoke outer saving the return value into another variable called 'inner'.
 */
-  
-// Code Here
 
-
+var inner = outer();
 
 //Once you do that, invoke inner.
 
 //Code Here
-
-
 
 ////////// PROBLEM 2 //////////
 
 // Do not edit the code below.
 function callFriend(name) {
   function dial(number) {
-    return 'Calling ' + name + ' at ' + number
+    return "Calling " + name + " at " + number;
   }
   return dial;
 }
@@ -51,9 +47,9 @@ function callFriend(name) {
   (HINT: You will need to pass in arguments to both function invocations)
 */
 
-//Code Here
+let callJake = callFriend("Jake");
 
-
+callJake("435-555-9248");
 
 ////////// PROBLEM 3 //////////
 
@@ -61,18 +57,20 @@ function callFriend(name) {
   Write a function called makeCounter that makes the following code work properly.
 */
 
-//Code Here
+function makeCounter() {
+  let num = 0;
 
+  return function() {
+    return (num += 1);
+  };
+}
 
-
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
-
-
+// Uncomment this once you make your function
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 ////////// PROBLEM 4 //////////
 
@@ -86,11 +84,16 @@ function callFriend(name) {
 */
 
 function counterFactory(value) {
-  // Code here.
+  // return {
+  //   inc(value) {
+  //     return value += 1;
+  //   },
 
-  return {
+  // dec(value) {
+  //   return value -= 1;
+  // },
 
-  };
+  return {};
 }
 
 counter = counterFactory(10);
@@ -98,8 +101,6 @@ counter = counterFactory(10);
 // counter.inc() // 12
 // counter.inc() // 13
 // counter.dec() // 12
-
-
 
 ////////// PROBLEM 5 //////////
 
@@ -109,18 +110,19 @@ counter = counterFactory(10);
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
-function motivation( firstname, lastname ) {
+function motivation(firstname, lastname) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
+  return function message() {
+    return welcomeText + firstname + lastname;
+  };
 
   //Uncommment this to return the value of your message function
   //return message;
 }
 
-var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-
-
+var greeting = motivation("Billy", "Bob"); // 'You're doing awesome keep it up Billy Bob.
 
 ////////// PROBLEM 6 //////////
 
@@ -136,8 +138,15 @@ var module = (function() {
     location: "Utah"
   };
 
-  function privateMethod(){
-    return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
+  function privateMethod() {
+    return (
+      "Hi, I'm " +
+      person.name +
+      ", age " +
+      person.age +
+      " from " +
+      person.location
+    );
   }
 
   // Anything that is being returned is made public and can be invoked from
@@ -146,8 +155,6 @@ var module = (function() {
     // Code here.
   };
 })();
-
-
 
 ////////// PROBLEM 7 //////////
 
@@ -166,10 +173,8 @@ function secretNumber() {
   };
 }
 
-
-
 ////////// PROBLEM 8 //////////
-  
+
 /*
   Here we have a for loop that will iterate as long as i is less than or equal to 5.
   What we need to do is console.log(i) so that it logs like so:
