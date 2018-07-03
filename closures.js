@@ -84,23 +84,24 @@ count(); // 4
 */
 
 function counterFactory(value) {
-  // return {
-  //   inc(value) {
-  //     return value += 1;
-  //   },
-
-  // dec(value) {
-  //   return value -= 1;
-  // },
-
+  return {
+    inc() {
+      value += 1;
+      return value;
+    },
+    dec() {
+      value -= 1;
+      return value;
+    }
+  };
   return {};
 }
 
 counter = counterFactory(10);
-// counter.inc() // 11
-// counter.inc() // 12
-// counter.inc() // 13
-// counter.dec() // 12
+counter.inc(); // 11
+counter.inc(); // 12
+counter.inc(); // 13
+counter.dec(); // 12
 
 ////////// PROBLEM 5 //////////
 
@@ -115,11 +116,11 @@ function motivation(firstname, lastname) {
 
   // code message function here.
   return function message() {
-    return welcomeText + firstname + lastname;
+    return `${welcomeText} ${firstname} ${lastname}.`;
   };
 
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation("Billy", "Bob"); // 'You're doing awesome keep it up Billy Bob.
@@ -152,7 +153,7 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
+    publicMethod: privateMethod
   };
 })();
 
@@ -169,7 +170,8 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+    addToSecret: n => (secret += n),
+    takeAwayFromSecret: n => (secret -= n)
   };
 }
 
@@ -193,9 +195,13 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
+    function closure(ind) {
+      setTimeout(() => {
+        console.log(ind);
+      }, ind * 1000);
+    }
+
+    closure(i);
   }
 }
 timeOutCounter();

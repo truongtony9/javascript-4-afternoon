@@ -64,4 +64,12 @@ function Car(brand, model, year) {
   this.brand = brand;
   this.model = model;
   this.year = year;
+
+  move = 0;
+
+  return {
+    moveCar() {
+      return (move += 10);
+    }
+  };
 }
